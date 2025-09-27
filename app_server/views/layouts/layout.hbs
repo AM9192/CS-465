@@ -7,10 +7,16 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  {{> header}}
-  <main>
-    {{{body}}}
-  </main>
-  {{> footer}}
+  <div id="background">
+    <div id="page">
+      {{> header}}
+
+      <main>
+        {{{body}}}
+      </main>
+
+      {{> footer}}
+    </div>
+  </div>
 </body>
 </html>
