@@ -10,6 +10,9 @@ var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel');
 
+// Bring in the API app
+var api = require('./app_api/app');
+
 var app = express();
 
 // view engine setup
@@ -28,6 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
+
+// Mount API under /api
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
