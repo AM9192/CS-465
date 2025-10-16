@@ -1,18 +1,19 @@
-<div id="contents">
-  <div class="box">
-    <div>
-      <div class="body">
-        <h1>Travel</h1>
-        <ul id="sites">
-          {{#each trips}}
-          <li>
-            <a href="/travel"><img src="/images/{{image}}" alt="{{name}}"></a>
-            <h2><a href="/travel">{{name}}</a></h2>
-            {{{description}}}
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<h1>Travel</h1>
+
+{{#if trips.length}}
+  <ul id="trip-list">
+    {{#each trips}}
+      <li class="trip-item">
+        <h2>
+          <a href="/travel/{{this._id}}">{{this.name}}</a>
+        </h2>
+        <p><strong>Resort:</strong> {{this.resort}}</p>
+        <p><strong>Length:</strong> {{this.length}} days</p>
+        <p><strong>Price per person:</strong> ${{this.perPerson}}</p>
+        <p>{{this.description}}</p>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No trips available at the moment.</p>
+{{/if}}

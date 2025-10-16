@@ -1,9 +1,10 @@
 // app_server/controllers/travel.js
 const axios = require('axios');
 
+// Base URL for your API
 const apiBase = process.env.API_BASE || 'http://localhost:3000/api';
 
-// GET /travel  -> list all trips (from API)
+// GET /travel -> list all trips
 const listTrips = async (req, res) => {
   try {
     const { data: trips } = await axios.get(`${apiBase}/trips`);
@@ -14,11 +15,11 @@ const listTrips = async (req, res) => {
   }
 };
 
-// GET /travel/:tripCode -> single trip detail (from API)
+// GET /travel/:tripid -> show one trip detail
 const tripDetail = async (req, res) => {
   try {
-    const { tripCode } = req.params;
-    const { data: trip } = await axios.get(`${apiBase}/trips/${tripCode}`);
+    const { tripid } = req.params; // must match how your route is defined
+    const { data: trip } = await axios.get(`${apiBase}/trips/${tripid}`);
     res.render('trip', { title: trip.name, trip });
   } catch (err) {
     const status = err.response?.status || 500;

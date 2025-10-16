@@ -1,0 +1,50 @@
+<div class="container col-md-6">
+  <h2 class="text-center mb-3">Edit Trip</h2>
+
+  <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="mb-2">
+      <label class="form-label">Code</label>
+      <input class="form-control" formControlName="code">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Name</label>
+      <input class="form-control" formControlName="name">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Length (nights)</label>
+      <input type="number" class="form-control" formControlName="length">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Start</label>
+      <input type="date" class="form-control" formControlName="start">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Resort</label>
+      <input class="form-control" formControlName="resort">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Per Person (USD)</label>
+      <input type="number" class="form-control" formControlName="perPerson">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Image filename</label>
+      <input class="form-control" formControlName="image">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <input class="form-control" formControlName="description">
+    </div>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-info">Save</button>
+      <a routerLink="/" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+  </form>
+</div>

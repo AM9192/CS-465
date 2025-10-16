@@ -1,13 +1,16 @@
-// app_api/routes/index.js
 const express = require('express');
 const router = express.Router();
+const ctrlTrips = require('../controllers/trips');
 
-// health check to prove the API app is mounted
-router.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok', app: 'app_api'});
-});
+router
+  .route('/trips')
+  .get(ctrlTrips.tripsList)
+  .post(ctrlTrips.tripsCreate);
 
-// mount trips under /api/trips
-router.use('/trips', require('./trips'));
+router
+  .route('/trips/:tripid')
+  .get(ctrlTrips.tripsReadOne)
+  .put(ctrlTrips.tripsUpdateOne)
+  .delete(ctrlTrips.tripsDeleteOne);
 
 module.exports = router;

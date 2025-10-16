@@ -1,0 +1,55 @@
+<div class="container col-md-6">
+  <h2 class="text-center mb-3">Add Trip</h2>
+
+  <form *ngIf="addForm" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="mb-2">
+      <label class="form-label">Code</label>
+      <input class="form-control" formControlName="code"
+             [ngClass]="{'is-invalid': submitted && f['code'].errors}">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Name</label>
+      <input class="form-control" formControlName="name"
+             [ngClass]="{'is-invalid': submitted && f['name'].errors}">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Length (nights)</label>
+      <input class="form-control" formControlName="length" type="number"
+             [ngClass]="{'is-invalid': submitted && f['length'].errors}">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Start</label>
+      <input class="form-control" formControlName="start" type="date"
+             [ngClass]="{'is-invalid': submitted && f['start'].errors}">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Resort</label>
+      <input class="form-control" formControlName="resort"
+             [ngClass]="{'is-invalid': submitted && f['resort'].errors}">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Per Person (USD)</label>
+      <input class="form-control" formControlName="perPerson" type="number"
+             [ngClass]="{'is-invalid': submitted && f['perPerson'].errors}">
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Image filename</label>
+      <input class="form-control" formControlName="image"
+             [ngClass]="{'is-invalid': submitted && f['image'].errors}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <input class="form-control" formControlName="description"
+             [ngClass]="{'is-invalid': submitted && f['description'].errors}">
+    </div>
+
+    <button class="btn btn-info">Save</button>
+  </form>
+</div>

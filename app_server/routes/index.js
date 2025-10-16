@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Travlr Getaways' });
-});
+const travelController = require('../controllers/travel');
+
+// list all trips
+router.get('/travel', travelController.listTrips);
+
+// view one trip by id
+router.get('/travel/:tripid', travelController.tripDetail);
 
 module.exports = router;
