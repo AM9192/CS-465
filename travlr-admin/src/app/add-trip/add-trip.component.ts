@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripDataService } from '../services/trip-data.service';
 
 @Component({
   selector: 'app-add-trip',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './add-trip.component.html'
+  templateUrl: './add-trip.component.html',
+  styleUrls: ['./add-trip.component.css']
 })
 export class AddTripComponent implements OnInit {
   public addForm!: FormGroup;
@@ -33,7 +31,7 @@ export class AddTripComponent implements OnInit {
     });
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
     this.submitted = true;
     if (this.addForm.valid) {
       this.trips.addTrip(this.addForm.value).subscribe({
@@ -43,5 +41,7 @@ export class AddTripComponent implements OnInit {
     }
   }
 
-  get f() { return this.addForm.controls; }
+  get f() {
+    return this.addForm.controls;
+  }
 }

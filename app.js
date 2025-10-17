@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
 
+require('dotenv').config(); // Load environment variables from .env file
+
 // updated paths to app_server
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');

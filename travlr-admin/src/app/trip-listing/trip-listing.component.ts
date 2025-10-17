@@ -1,40 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { TripDataService } from '../services/trip-data.service';
 import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-trip-listing',
-  standalone: true,
-  imports: [CommonModule, RouterModule], // ✅ routerLink now works
   templateUrl: './trip-listing.component.html',
+  styleUrls: ['./trip-listing.component.css']
 })
 export class TripListingComponent implements OnInit {
   trips: Trip[] = [];
   loading = true;
   error = '';
 
-  constructor(private tripsSvc: TripDataService) {}
+  constructor(private tripDataService: TripDataService) {}
 
   ngOnInit(): void {
-    this.tripsSvc.getTrips().subscribe({
+    this.tripDataService.getTrips().subscribe({
       next: (data) => {
         this.trips = data;
         this.loading = false;
       },
       error: (err) => {
+        console.error('Error fetching trips:', err);
         this.error = 'Failed to load trips.';
         this.loading = false;
-        console.error(err);
-      },
+      }
     });
   }
 
-  // ✅ moved inside class
-  onDelete(id: string) {
-    this.tripsSvc.deleteTrip(id).subscribe(() => {
-      this.trips = this.trips.filter((t) => t._id !== id);
-    });
+  onDelete(id: string): void {
+    if (confirm('Are you sure you want to delete this trip?')) {
+      this.tripDataService.deleteTrip(id).subscribe({
+        next: () => {
+          this.trips = this.trips.filter(t => t._id !== id);
+        },
+        error: (err) => {
+          console.error('Error deleting trip:', err);
+          this.error = 'Failed to delete trip.';
+        }
+      });
+    }
   }
 }
